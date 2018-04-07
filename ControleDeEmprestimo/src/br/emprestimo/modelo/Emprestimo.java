@@ -11,10 +11,15 @@ public class Emprestimo {
 	private String dataDevolucao;
 
 	public Livro getLivro() {
+		
 		return livro;
+		
 	}
 
 	public void setLivro(Livro livro) {
+		if(livro == null){
+			throw new RuntimeException("Livro inválido");
+		}
 		this.livro = livro;
 	}
 
@@ -31,7 +36,11 @@ public class Emprestimo {
 	}
 
 	public void setDataEmprestimo(String dataEmprestimo) {
-		this.dataEmprestimo = dataEmprestimo;
+		if(validaData(dataEmprestimo)){
+			this.dataEmprestimo = dataEmprestimo;
+		} else {
+			throw new RuntimeException("Data inválida");
+		}
 	}
 
 	public String getDataDevolucao() {
