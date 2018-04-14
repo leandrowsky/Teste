@@ -9,6 +9,10 @@ public class Usuario {
 	}
 
 	public void setRa(String ra) {
+		if (ra == "" | ra == null){
+			throw new RuntimeException("RA invalido");
+		}
+		
 		this.ra = ra;
 	}
 

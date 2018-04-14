@@ -85,22 +85,34 @@ public class UC01RegistraEmprestimoDeLivro {
 	public void CT07UC01FB_registrar_emprestimo_com_data_invalida() {
 		assertFalse(emprestimo.validaData("29-03-2000"));
 	}
-	
+
 	@Test
 	public void CT08UC01FB_registrar_emprestimo_com_dados_validos() {
 		assertEquals(usuario, emprestimo.getUsuario());
-	}	
-	
-	
+	}
+
 	@Test(expected = RuntimeException.class)
 	public void CT09UC01FB_registrar_emprestimo_com_dados_invalidos() {
-		emprestimo.setDataEmprestimo(null); 
+		emprestimo.setDataEmprestimo(null);
 	}
-	
+
 	@Test
 	public void CT10UC01FB_registrar_emprestimo_com_dados_invalidos() {
-		emprestimo.setDataEmprestimo("29/03/2000"); 
+		emprestimo.setDataEmprestimo("30/03/2000");
 	}
-	
-	
+
+	@Test(expected = RuntimeException.class)
+	public void CT11UC01FB_registrar_emprestimo_com_dados_invalidos() {
+		emprestimo.setDataEmprestimo("33/03/2000");
+	}
+
+	@Test(expected = RuntimeException.class)
+	public void CT12UC01FB_registrar_emprestimo_com_dados_invalidos() {
+		try {
+			emprestimo.setLivro(null);
+			fail("Deveria lançar uma exceção");
+		} catch (RuntimeException e) {
+			assertEquals("Livro inválido", e.getMessage());
+		}
+	}
 }
