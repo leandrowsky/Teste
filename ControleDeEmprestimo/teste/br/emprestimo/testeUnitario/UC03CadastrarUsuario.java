@@ -10,12 +10,16 @@ import br.emprestimo.modelo.Usuario;
 
 public class UC03CadastrarUsuario {
 	public static Usuario usuario;
+	static Object o;
+	static Object o2; 
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		usuario = new Usuario();
 		usuario.setRa("11111");
 		usuario.setNome("Jose da Silva");
+		
+		o = new Object();
 	}
 
 	@AfterClass
@@ -58,5 +62,26 @@ public class UC03CadastrarUsuario {
 	@Test
 	public void CT07UC01Testar_GetNome() {
 		assertEquals("Jose da Silva", usuario.getNome());
+	}
+	
+	@Test
+	public void CT08UC01Testar_equalsTrue() {
+		assertTrue(usuario.equals(usuario));
+	}
+	
+	@Test
+	public void CT09UC01Testar_equalsFalse() {
+		assertFalse(usuario.equals(o));
+	}
+	
+	@Test
+	public void CT09UC01Testar_equalsNull() {
+		assertTrue(usuario.equals(o2));
+	}
+	
+	@Test
+	public void CT10UC01Testar_equalsNomeNull() {
+		
+		assertTrue(usuario.equals(o2));
 	}
 }
